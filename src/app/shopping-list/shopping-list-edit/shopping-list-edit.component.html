@@ -1,0 +1,36 @@
+<div class="panel panel-primary">
+    <div class="panel-heading"> <b> Add items to shopping list</b></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <form (ngSubmit)="onAddItem(f)" #f="ngForm">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="form-group">
+                                <label for="name">Ingredient Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
+                                    required ngModel> 
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label for="amount">Ingredient Amount</label>
+                                <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount"
+                                    required ngModel pattern="[1-9]+[0-9]*$">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="form-group">
+                                <button class="btn" [ngClass]="{'btn-primary': !editMode, 'btn-warning': editMode}" type="submit" [disabled]="!f.valid">{{ editMode ? 'Update' : 'Add'}} Item</button>
+                                <button class="btn btn-danger" type="button" (click)="onDeleteItem()">Delete Item</button>
+                                <button class="btn btn-info" type="button" (click)="onClear()">Clear</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

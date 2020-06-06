@@ -1,0 +1,67 @@
+<div class="panel {{ editMode ? 'panel-success':'panel-primary' }}">
+    <div class="panel-heading"> <b> {{ editMode ? 'Update':'Create New' }}  Recipe</b></div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">
+                <form [formGroup]="recipeForm" (ngSubmit)="onSubmitRecipe()">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="name">Recipe Name</label>
+                                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter name">
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="name">Recipe Description</label>
+                                <textarea formControlName="description" id="" rows="3" class="form-control"
+                                    placeholder="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="name">Recipe Image Url</label>
+                                <input type="text" class="form-control" id="imageUrl" formControlName="imageUrl"
+                                    placeholder="Enter image URL">
+                            </div>
+                            <img src="" class="img-responsive" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12" formArrayName="ingredients">
+                            <div style="margin-bottom: 10px;">
+                                <button class="btn btn-warning" type="button" (click)="addIngredient()">Add Ingredient</button>
+                            </div>
+                            <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="name"
+                                            placeholder="Ingredient name">
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" formControlName="amount"
+                                            placeholder="Ingredient amount">
+                                    </div>
+                                </div>
+                                <div class="col-xs-2">
+                                    <button class="btn btn-danger" type="button" (click)="onRemoveIngredient(i)">X</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="form-group">
+                                <button class="btn {{ editMode ? 'btn-success':'btn-primary' }}" type="submit">{{ editMode ? 'Update':'Create' }} Recipe</button>
+                                <button class="btn btn-danger" type="button" (click)="onDeleteRecipe()" *ngIf="editMode">Delete Recipe</button>
+                                <button class="btn btn-info" type="button" (click)="onCancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

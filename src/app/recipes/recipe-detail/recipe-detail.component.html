@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+    <div class="panel-heading clearfix">
+        <b>{{recipe.name}}</b>
+        <div class="pull-right">
+            <button class="btn btn-success btn-sm" (click)="onEdit()">Edit Recipe</button>
+            <button class="btn btn-info btn-sm">To shopping list</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="image-big">
+            <img [src]="recipe.imageUrl" class="img-responsive" alt="{{recipe.name}}">
+        </div>
+        <hr>
+        <p>{{recipe.description}}</p>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients"> <span class="badge">{{ingredient.amount}}</span> {{ingredient.name}}</li>
+    </ul>
+
+</div>
